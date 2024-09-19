@@ -12,14 +12,15 @@ export function Card({
 }: CardProps) {
   return (
     <div className="rounded-2xl bg-card flex flex-row justify-between">
-      <div className="pl-4 pt-3">
+      <div className="pl-4 py-3 flex flex-col items-start">
         <h3 className="text-h3 font-semibold">{`Nº${id}`}</h3>
         <div className="flex gap-0.5 items-center">
           <h2 className="font-semibold text-2xl">{name}</h2>
           <IconAdd />
         </div>
-        <div>
-          <Tag />
+        <div className="flex gap-2">
+          <Tag title="Grama" />
+          <Tag title="Venenoso" />
         </div>
       </div>
       <div className="bg-green flex items-center rounded-2xl">

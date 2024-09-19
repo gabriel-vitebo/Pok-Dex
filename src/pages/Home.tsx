@@ -3,9 +3,12 @@ import { Card } from "../components/Card";
 import { FilterInput } from "../components/FilterInput";
 import { Options } from "../components/Options";
 
+// TODO: A API retorna o tipo dos pokemons, tenho q pega os tipos e passar para o card e a Tag
+
 interface PokemonDetails {
   id: number
   name: string,
+  type: string[]
   imageUrl: string
 }
 
@@ -29,6 +32,7 @@ export default function Home() {
 
           return {
             id: pokemonData.id,
+            type: pokemonData.type,
             name: pokemonData.name,
             imageUrl: pokemonData.sprites.other["official-artwork"].front_default
           };
