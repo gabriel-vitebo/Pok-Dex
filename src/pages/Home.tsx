@@ -15,6 +15,7 @@ interface Pokemon {
 
 export default function Home() {
   const [pokemons, setPokemons] = useState<PokemonDetails[]>([])
+  const [search, setSearch] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchPokemons = async () => {
@@ -25,7 +26,6 @@ export default function Home() {
         const fetchPokemonImage = data.results.map(async (pokemon: Pokemon) => {
           const pokemonResponse = await fetch(pokemon.url)
           const pokemonData = await pokemonResponse.json()
-          console.log({ data: pokemonData })
 
           return {
             id: pokemonData.id,
@@ -45,20 +45,24 @@ export default function Home() {
 
   return (
     <div className="flex items-center flex-col py-5">
-      <FilterInput />
+      <FilterInput search={setSearch} />
       <div className="mt-5 flex gap-0.5">
         <Options />
       </div>
       <main className="w-90p flex flex-col gap-3">
         {
-          pokemons.map((pokemon) => (
-            <Card
-              id={pokemon.id}
-              key={pokemon.id}
-              name={pokemon.name}
-              image={pokemon.imageUrl}
-            />
-          ))
+          pokemons
+            .filter(pokemon => search === null || pokemon.name
+              .toLowerCase()
+              .includes(search.toLowerCase()))
+            .map((pokemon) => (
+              <Card
+                id={pokemon.id}
+                key={pokemon.id}
+                name={pokemon.name}
+                image={pokemon.imageUrl}
+              />
+            ))
         }
       </main>
 
