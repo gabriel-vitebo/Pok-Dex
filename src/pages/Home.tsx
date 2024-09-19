@@ -20,7 +20,7 @@ export default function Home() {
   useEffect(() => {
     const fetchPokemons = async () => {
       try {
-        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=10')
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=20`)
         const data = await response.json()
 
         const fetchPokemonImage = data.results.map(async (pokemon: Pokemon) => {
@@ -49,7 +49,7 @@ export default function Home() {
       <div className="mt-5 flex gap-0.5">
         <Options />
       </div>
-      <main className="w-90p flex flex-col gap-3">
+      <main className="w-90p h-[500px] overflow-y-auto flex flex-col gap-3 p-3 bg-default rounded">
         {
           pokemons
             .filter(pokemon => search === null || pokemon.name

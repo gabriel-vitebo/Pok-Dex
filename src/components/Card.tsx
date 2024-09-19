@@ -1,4 +1,5 @@
 import { IconAdd } from "./IconAdd";
+import { Tag } from "./Tag";
 
 interface CardProps {
   id: number,
@@ -16,6 +17,9 @@ export function Card({
         <div className="flex gap-0.5 items-center">
           <h2 className="font-semibold text-2xl">{name}</h2>
           <IconAdd />
+        </div>
+        <div>
+          <Tag />
         </div>
       </div>
       <div className="bg-green flex items-center rounded-2xl">

@@ -7,7 +7,8 @@ export default {
   theme: {
     width: {
       '90p': '90%',
-      'image': '90px'
+      'image': '90px',
+      'mainH': '30px'
     },
     colors: {
       'default': '#0f172a',
