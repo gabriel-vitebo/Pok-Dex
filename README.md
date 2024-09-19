@@ -1,50 +1,31 @@
-# React + TypeScript + Vite
+# Requisitos da Aplicação Pokédex
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Com esta API (PokeAPI v2), precisamos que você crie uma **interface WEB** para exibir as informações dos Pokémon capturados.
 
-Currently, two official plugins are available:
+## Sua aplicação DEVE:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Filtrar Pokémon por nome ou número.**
 
-## Expanding the ESLint configuration
+2. **Adicionar/Capturar novos Pokémon à Pokédex**, que estará inicialmente vazia.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+3. **Listar todos os Pokémon** que foram adicionados à Pokédex.
 
-- Configure the top-level `parserOptions` property like this:
+4. **Mostrar detalhes** de cada Pokémon adicionado à Pokédex, como:
+   - Nome
+   - Imagem, com uma opção para o usuário enviar sua própria imagem, substituindo a fornecida pela API
+   - Peso
+   - Altura
+   - Lista de tipos
+   - Lista de habilidades
+   - Estatísticas, incluindo:
+     - Velocidade
+     - Defesa
+     - Ataque
+     - HP
+   - Cada etapa da sua evolução
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+5. Ao clicar em um item da **lista de tipos**, mostrar todos os Pokémon daquele tipo, incluindo os que ainda não foram adicionados à Pokédex.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+6. Ao clicar em um item da **lista de habilidades**, mostrar o `short_effect` daquela habilidade.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+7. **Excluir Pokémon** que foram adicionados à Pokédex.

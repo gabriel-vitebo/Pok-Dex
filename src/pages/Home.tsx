@@ -1,16 +1,65 @@
+import { useEffect, useState } from "react";
 import { Card } from "../components/Card";
 import { FilterInput } from "../components/FilterInput";
 import { Options } from "../components/Options";
 
+interface PokemonDetails {
+  id: number
+  name: string,
+  imageUrl: string
+}
+
+interface Pokemon {
+  url: string
+}
+
 export default function Home() {
+  const [pokemons, setPokemons] = useState<PokemonDetails[]>([])
+
+  useEffect(() => {
+    const fetchPokemons = async () => {
+      try {
+        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=10')
+        const data = await response.json()
+
+        const fetchPokemonImage = data.results.map(async (pokemon: Pokemon) => {
+          const pokemonResponse = await fetch(pokemon.url)
+          const pokemonData = await pokemonResponse.json()
+          console.log({ data: pokemonData })
+
+          return {
+            id: pokemonData.id,
+            name: pokemonData.name,
+            imageUrl: pokemonData.sprites.other["official-artwork"].front_default
+          };
+        })
+
+        const pokemonResults = await Promise.all(fetchPokemonImage)
+        setPokemons(pokemonResults)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    fetchPokemons()
+  }, [])
+
   return (
     <div className="flex items-center flex-col py-5">
       <FilterInput />
       <div className="mt-5 flex gap-0.5">
         <Options />
       </div>
-      <main className="w-90p">
-        <Card />
+      <main className="w-90p flex flex-col gap-3">
+        {
+          pokemons.map((pokemon) => (
+            <Card
+              id={pokemon.id}
+              key={pokemon.id}
+              name={pokemon.name}
+              image={pokemon.imageUrl}
+            />
+          ))
+        }
       </main>
 
     </div>
