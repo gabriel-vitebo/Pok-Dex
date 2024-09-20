@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Card } from "../components/Card";
 import { FilterInput } from "../components/FilterInput";
-import { Options } from "../components/Options";
+import { OptionsOrder } from "../components/OptionsOrder";
+import { OptionsTypes } from "../components/OptionsTypes";
 
 interface PokemonType {
   type: {
@@ -24,6 +25,8 @@ export default function Home() {
   const [pokemons, setPokemons] = useState<PokemonDetails[]>([])
   const [search, setSearch] = useState<string | null>(null)
   const [sortOrder, setSortOrder] = useState<string>('growing')
+  const [filterTypes, setFilterTypes] = useState<string>('all')
+
 
   useEffect(() => {
     const fetchPokemons = async () => {
@@ -54,22 +57,27 @@ export default function Home() {
     fetchPokemons()
   }, [])
 
-  const sortedPokemons = [...pokemons].sort((growing, descending) => {
-    if (sortOrder === 'growing') {
-      return growing.id - descending.id;
-    }
-    return descending.id - growing.id;
-  })
+  const filteredAndSortedPokemons = [...pokemons]
+    .filter(pokemon => filterTypes == 'all' || pokemon.types.includes(filterTypes))
+    .filter(pokemon => search === null || pokemon.name.toLowerCase().includes(search.toLowerCase()) || pokemon.id.toString() === search)
+    .sort((growing, descending) => {
+      if (sortOrder === "growing") {
+        return growing.id - descending.id;
+      }
+      return descending.id - growing.id;
+    });
+
 
   return (
     <div className="flex items-center flex-col py-5">
       <FilterInput search={setSearch} />
       <div className="mt-5 flex gap-0.5 mb-1">
-        <Options onSelectChange={setSortOrder} />
+        <OptionsTypes id="types" onSelectChange={setFilterTypes} />
+        <OptionsOrder id="order" onSelectChange={setSortOrder} />
       </div>
       <main className="w-90p h-[500px] overflow-y-auto flex flex-col gap-3 p-3 bg-default rounded">
         {
-          sortedPokemons
+          filteredAndSortedPokemons
             .filter(pokemon => search === null || pokemon.name
               .toLowerCase()
               .includes(search.toLowerCase()) || pokemon.id.toString() === search)
