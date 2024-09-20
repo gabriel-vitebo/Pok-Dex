@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { pokemonsElement } from '../utils/pokemonsElement'
 
 interface OptionTypesProps {
@@ -6,14 +7,18 @@ interface OptionTypesProps {
 }
 
 export function OptionsTypes({ onSelectChange, id }: OptionTypesProps) {
+  const [selectedValue, setSelectedValue] = useState('all');
+
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     onSelectChange(event.target.value)
+    setSelectedValue(event.target.value)
   }
+
 
   return (
     <select
       id={id}
-      className="bg-black px-4 py-2.5 rounded-3xl text-white"
+      className={`bg-${selectedValue} px-4 py-2.5 rounded-3xl text-white`}
       onChange={handleSelectChange}
     >
       <option value="all">Todos os Tipos</option>

@@ -24,6 +24,6 @@ Com esta API (PokeAPI v2), precisamos que você crie uma **interface WEB** para 
       [ ] HP
     [ ] Cada etapa da sua evolução
 
-[ ] Ao clicar em um item da lista de tipos, mostrar todos os Pokémon daquele tipo, incluindo os que ainda não foram adicionados à Pokédex.
+[x] Ao clicar em um item da lista de tipos, mostrar todos os Pokémon daquele tipo, incluindo os que ainda não foram adicionados à Pokédex.
 
 [ ] Excluir Pokémon que foram adicionados à Pokédex.
