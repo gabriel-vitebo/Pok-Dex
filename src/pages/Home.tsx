@@ -58,7 +58,7 @@ export default function Home() {
           pokemons
             .filter(pokemon => search === null || pokemon.name
               .toLowerCase()
-              .includes(search.toLowerCase()))
+              .includes(search.toLowerCase()) || pokemon.id.toString() === search)
             .map((pokemon) => (
               <Card
                 id={pokemon.id}
