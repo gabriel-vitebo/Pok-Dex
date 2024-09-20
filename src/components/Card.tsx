@@ -5,10 +5,11 @@ interface CardProps {
   id: number,
   name: string,
   image: string
+  types: string[]
 }
 
 export function Card({
-  name, image, id
+  name, image, id, types
 }: CardProps) {
   return (
     <div className="rounded-2xl bg-card flex flex-row justify-between">
@@ -19,11 +20,14 @@ export function Card({
           <IconAdd />
         </div>
         <div className="flex gap-2">
-          <Tag title="Grama" />
-          <Tag title="Venenoso" />
+          {
+            types.map((type) => (
+              <Tag title={type} typeColor={type} key={name} />
+            ))
+          }
         </div>
       </div>
-      <div className="bg-green flex items-center rounded-2xl">
+      <div className={`bg-${types[0]} flex items-center rounded-2xl`}>
         <img src={image} alt="" className="w-image h-image px-4 object-fill" />
       </div>
     </div>

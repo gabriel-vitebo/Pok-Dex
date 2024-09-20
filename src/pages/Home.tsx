@@ -4,11 +4,16 @@ import { FilterInput } from "../components/FilterInput";
 import { Options } from "../components/Options";
 
 // TODO: A API retorna o tipo dos pokemons, tenho q pega os tipos e passar para o card e a Tag
+interface PokemonType {
+  type: {
+    name: string;
+  };
+}
 
 interface PokemonDetails {
   id: number
   name: string,
-  type: string[]
+  types: string[]
   imageUrl: string
 }
 
@@ -30,9 +35,11 @@ export default function Home() {
           const pokemonResponse = await fetch(pokemon.url)
           const pokemonData = await pokemonResponse.json()
 
+          const pokemonTypes = pokemonData.types.map((pokemonType: PokemonType) => pokemonType.type.name)
+
           return {
             id: pokemonData.id,
-            type: pokemonData.type,
+            types: pokemonTypes,
             name: pokemonData.name,
             imageUrl: pokemonData.sprites.other["official-artwork"].front_default
           };
@@ -46,6 +53,8 @@ export default function Home() {
     }
     fetchPokemons()
   }, [])
+
+  console.log(pokemons)
 
   return (
     <div className="flex items-center flex-col py-5">
@@ -61,6 +70,7 @@ export default function Home() {
               .includes(search.toLowerCase()) || pokemon.id.toString() === search)
             .map((pokemon) => (
               <Card
+                types={pokemon.types}
                 id={pokemon.id}
                 key={pokemon.id}
                 name={pokemon.name}
