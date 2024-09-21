@@ -1,7 +1,11 @@
 import { IconHearth } from "./IconHearth";
 import { IconArrowLeft } from "./IconArrowLeft";
 
-export function Header() {
+interface HeaderProps {
+  image: string
+}
+
+export function Header({ image }: HeaderProps) {
   return (
     <header className="relative">
       <div className="absolute inset-0 flex justify-between m-4 z-10 items-start">
@@ -14,7 +18,7 @@ export function Header() {
       </div>
       <div className="w-full relative">
         <div className="bg-green rounded-b-full flex justify-center">
-          <img src="https://github.com/gabriel-vitebo.png" alt="" className="w-imageDetails h-imageDetails px-4 object-fill relative top-12" />
+          <img src={image} alt="" className="w-imageDetails h-imageDetails px-4 object-fill relative top-10" />
         </div>
       </div>
     </header>
