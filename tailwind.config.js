@@ -8,6 +8,7 @@ export default {
     width: {
       '90p': '90%',
       'image': '90px',
+      'imageDetails': '200px',
       'mainH': '30px'
     },
     colors: {
@@ -17,6 +18,7 @@ export default {
       'h3': '#111827',
       'card': '#94a3b8',
       'green': '#16a34a',
+
 
       'all': '#020617',
       'water': '#5090D6',

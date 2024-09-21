@@ -14,7 +14,6 @@ export function OptionsTypes({ onSelectChange, id }: OptionTypesProps) {
     setSelectedValue(event.target.value)
   }
 
-
   return (
     <select
       id={id}
