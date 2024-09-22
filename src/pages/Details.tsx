@@ -10,11 +10,18 @@ interface PokemonType {
   };
 }
 
+interface PokemonAbilityProps {
+  ability: {
+    name: string;
+  };
+}
+
 export function Details() {
   const [pokemonName, setPokemonName] = useState<string>('')
   const [pokemonId, setPokemonId] = useState<string>('')
   const [pokemonHeight, setPokemonHeight] = useState<number>(0)
   const [pokemonWeight, setPokemonWeight] = useState<string>('')
+  const [pokemonAbilities, setPokemonAbilities] = useState<PokemonAbilityProps[]>([])
   const [pokemonTypes, setPokemonTypes] = useState<PokemonType[]>([])
   const [imageUrl, setImageUrl] = useState<string>('')
   const [background, setBackground] = useState<string>('')
@@ -38,6 +45,7 @@ export function Details() {
         setPokemonTypes(data.types)
         setPokemonHeight(data.height)
         setPokemonWeight(data.weight)
+        setPokemonAbilities(data.abilities)
 
         if (data.types.length > 0) {
           setBackground(data.types[0].type.name.toLowerCase());
@@ -49,6 +57,8 @@ export function Details() {
     }
     CatchingSpecificPokemon()
   }, [])
+
+  const abilitiesString = pokemonAbilities.map((item) => item.ability.name).join(', ')
 
   return (
     <>
@@ -75,8 +85,9 @@ export function Details() {
           <div className="grid grid-cols-2 gap-4">
             <StatsCard label="Peso" value={`${pokemonWeight} hg`} />
             <StatsCard label="Altura" value={`${pokemonHeight} dm`} />
-            <StatsCard label="Categoria" value="Seed" />
-            <StatsCard label="Habilidade" value="Overgrow" />
+            <div className="col-span-2">
+              <StatsCard label="Habilidades" value={abilitiesString} />
+            </div>
           </div>
         </div>
       </main>
