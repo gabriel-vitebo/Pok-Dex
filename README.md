@@ -11,12 +11,12 @@ Com esta API (PokeAPI v2), precisamos que você crie uma **interface WEB** para 
 [ ] Listar todos os Pokémon** que foram adicionados à Pokédex.
 
 [ ] Mostrar detalhes de cada Pokémon adicionado à Pokédex, como:
-    [ ] Nome
-    [ ] Imagem, com uma opção para o usuário enviar sua própria imagem, substituindo a fornecida pela API
-    [ ] Peso
-    [ ] Altura
-    [ ] Lista de tipos
-    [ ] Lista de habilidades
+    [x] Nome
+    [x] Imagem
+    [x] Peso
+    [x] Altura
+    [x] Lista de tipos
+    [ ] habilidades
     [ ] Estatísticas, incluindo:
       [ ] Velocidade
       [ ] Defesa
