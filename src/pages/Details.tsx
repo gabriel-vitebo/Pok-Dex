@@ -19,8 +19,8 @@ interface PokemonAbilityProps {
 export function Details() {
   const [pokemonName, setPokemonName] = useState<string>('')
   const [pokemonId, setPokemonId] = useState<string>('')
-  const [pokemonHeight, setPokemonHeight] = useState<number>(0)
-  const [pokemonWeight, setPokemonWeight] = useState<string>('')
+  const [pokemonHeight, setPokemonHeight] = useState<string>('')
+  const [pokemonWeight, setPokemonWeight] = useState<number>(0)
   const [pokemonAbilities, setPokemonAbilities] = useState<PokemonAbilityProps[]>([])
   const [pokemonTypes, setPokemonTypes] = useState<PokemonType[]>([])
   const [imageUrl, setImageUrl] = useState<string>('')
@@ -31,6 +31,15 @@ export function Details() {
 
   function handleBack() {
     navigate(-1)
+  }
+  function convertHGtoKG(hg: number) {
+    const result = hg * 0.1
+    setPokemonWeight(result)
+  }
+
+  function convertDMtoM(dm: number) {
+    const result = dm * 0.1
+    setPokemonHeight(`${result.toFixed(2)} M`)
   }
 
   useEffect(() => {
@@ -43,9 +52,9 @@ export function Details() {
         setPokemonName(data.name)
         setPokemonId(data.id)
         setPokemonTypes(data.types)
-        setPokemonHeight(data.height)
-        setPokemonWeight(data.weight)
         setPokemonAbilities(data.abilities)
+        convertHGtoKG(data.weight)
+        convertDMtoM(data.height)
 
         if (data.types.length > 0) {
           setBackground(data.types[0].type.name.toLowerCase());
@@ -83,8 +92,8 @@ export function Details() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <StatsCard label="Peso" value={`${pokemonWeight} hg`} />
-            <StatsCard label="Altura" value={`${pokemonHeight} dm`} />
+            <StatsCard label="Peso" value={`${pokemonWeight} KG`} />
+            <StatsCard label="Altura" value={`${pokemonHeight}`} />
             <div className="col-span-2">
               <StatsCard label="Habilidades" value={abilitiesString} />
             </div>
