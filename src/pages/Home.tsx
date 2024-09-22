@@ -3,6 +3,7 @@ import { Card } from "../components/Card";
 import { FilterInput } from "../components/FilterInput";
 import { OptionsOrder } from "../components/OptionsOrder";
 import { OptionsTypes } from "../components/OptionsTypes";
+import { useNavigate } from "react-router-dom";
 
 interface PokemonType {
   type: {
@@ -26,6 +27,15 @@ export default function Home() {
   const [search, setSearch] = useState<string | null>(null)
   const [sortOrder, setSortOrder] = useState<string>('growing')
   const [filterTypes, setFilterTypes] = useState<string>('all')
+
+  const navigate = useNavigate()
+
+  // TODO: Terminar de pegar as informações da API
+  // Converter hg para kg e dm para metros
+
+  function handleDetails(id: number) {
+    navigate(`/details/${id}`)
+  }
 
 
   useEffect(() => {
@@ -88,6 +98,7 @@ export default function Home() {
                 key={pokemon.id}
                 name={pokemon.name}
                 image={pokemon.imageUrl}
+                onClick={() => handleDetails(pokemon.id)}
               />
             ))
         }

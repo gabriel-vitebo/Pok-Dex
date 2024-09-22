@@ -6,6 +6,7 @@ import clsx from "clsx";
 interface HeaderProps {
   image: string
   background: string
+  onClick: (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
 }
 
 const elementColors: { [key: string]: string } = {
@@ -29,20 +30,18 @@ const elementColors: { [key: string]: string } = {
   flying: "bg-flying",
 };
 
-export function Header({ image, background }: HeaderProps) {
+export function Header({ image, background, onClick }: HeaderProps) {
   const [bgColor, setBgColor] = useState<string>("bg-black");
 
   useEffect(() => {
     setBgColor(elementColors[background] || "bg-black");
   }, [background]);
 
-  console.log(bgColor)
-
   return (
     <header className="relative">
       <div className="absolute inset-0 flex justify-between m-4 z-10 items-start">
         <button className="top-0 left-0">
-          <IconArrowLeft />
+          <IconArrowLeft onClick={onClick} />
         </button>
         <button className="top-0 right-0">
           <IconHearth />

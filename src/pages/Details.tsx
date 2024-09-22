@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Header } from "../components/Header";
 import { StatsCard } from "../components/StatsCard";
 import { Tag } from "../components/Tag";
+import { useNavigate, useParams } from "react-router-dom";
 
 interface PokemonType {
   type: {
@@ -18,13 +19,17 @@ export function Details() {
   const [imageUrl, setImageUrl] = useState<string>('')
   const [background, setBackground] = useState<string>('')
 
-  // TODO: Terminar de pegar as informações da API
-  // Converter hg para kg e dm para metros
+  const navigate = useNavigate()
+  const params = useParams()
+
+  function handleBack() {
+    navigate(-1)
+  }
 
   useEffect(() => {
     const CatchingSpecificPokemon = async () => {
       try {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/6`)
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${params.id}`)
         const data = await response.json()
 
         setImageUrl(data.sprites.other["official-artwork"].front_default)
@@ -45,11 +50,9 @@ export function Details() {
     CatchingSpecificPokemon()
   }, [])
 
-  console.log({ background })
-
   return (
     <>
-      <Header image={imageUrl} background={background} />
+      <Header image={imageUrl} background={background} onClick={() => handleBack()} />
       <main className="mt-16 mx-4 text-gray-800">
         <div className="bg-card p-6 rounded-xl shadow-lg relative max-w-sm mx-auto">
           <div className="text-center mt-2">

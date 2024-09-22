@@ -6,13 +6,14 @@ interface CardProps {
   name: string,
   image: string
   types: string[]
+  onClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
 }
 
 export function Card({
-  name, image, id, types
+  name, image, id, types, onClick
 }: CardProps) {
   return (
-    <div className="rounded-2xl bg-card flex flex-row justify-between">
+    <div className="rounded-2xl bg-card flex flex-row justify-between" onClick={onClick}>
       <div className="pl-4 py-3 flex flex-col items-start">
         <h3 className="text-h3 font-semibold">{`Nº${id}`}</h3>
         <div className="flex gap-0.5 items-center">
@@ -22,7 +23,7 @@ export function Card({
         <div className="flex gap-2">
           {
             types.map((type) => (
-              <Tag title={type} typeColor={type} key={name} />
+              <Tag title={type} key={name} />
             ))
           }
         </div>
