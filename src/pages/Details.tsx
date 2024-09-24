@@ -92,7 +92,7 @@ export function Details() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <StatsCard label="Peso" value={`${pokemonWeight} KG`} />
+            <StatsCard label="Peso" value={`${pokemonWeight.toFixed(2)} KG`} />
             <StatsCard label="Altura" value={`${pokemonHeight}`} />
             <div className="col-span-2">
               <StatsCard label="Habilidades" value={abilitiesString} />
