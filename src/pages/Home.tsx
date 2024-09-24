@@ -30,9 +30,6 @@ export default function Home() {
 
   const navigate = useNavigate()
 
-  // TODO: Terminar de pegar as informações da API
-  // Converter hg para kg e dm para metros
-
   function handleDetails(id: number) {
     navigate(`/details/${id}`)
   }

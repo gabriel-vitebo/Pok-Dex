@@ -6,18 +6,39 @@ interface OptionTypesProps {
   id: string
 }
 
+const elementColors: { [key: string]: string } = {
+  water: "water",
+  dragon: "dragon",
+  electric: "electric",
+  fairy: "fairy",
+  ghost: "ghost",
+  fire: "fire",
+  ice: "ice",
+  grass: "grass",
+  bug: "bug",
+  fighting: "fighting",
+  normal: "normal",
+  dark: "dark",
+  steel: "steel",
+  rock: "rock",
+  psychic: "psychic",
+  ground: "ground",
+  poison: "poison",
+  flying: "flying",
+};
+
 export function OptionsTypes({ onSelectChange, id }: OptionTypesProps) {
-  const [selectedValue, setSelectedValue] = useState('all');
+  const [bgColor, setBgColor] = useState<string>('black');
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     onSelectChange(event.target.value)
-    setSelectedValue(event.target.value)
+    setBgColor(elementColors[event.target.value] || "black");
   }
 
   return (
     <select
       id={id}
-      className={`bg-${selectedValue} px-4 py-2.5 rounded-3xl text-white`}
+      className={`bg-${bgColor} px-4 py-2.5 rounded-3xl text-white`}
       onChange={handleSelectChange}
     >
       <option value="all">Todos os Tipos</option>
