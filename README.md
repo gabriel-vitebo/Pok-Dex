@@ -17,11 +17,13 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - Tailwind
 
 💻 Projeto
+- Veja o site [AQUI](https://pokedexestudofrontend.netlify.app/)
+
 - Veja o design do projeto no [FIGMA](https://www.figma.com/design/HGl01QgXJffJxYvPzsqvkH/Pok%C3%A9dex-%2F-Pok%C3%A9mon-App-(Community)?node-id=1268-35268&t=iy7HSL4Ybl7lpiKA-1) aqui
 
 O Pokedex foi desenvolvido para fans de pokemon. Os usuários podem:
 
-- Visualizar 20 Pokemon's.
+- Visualizar 100 Pokemon's.
 - Visualizar um Pokemon especifico.
 - Buscar Pokemon por nome ou número.
 - Marcar e desmarcar conquistas como feitas.
