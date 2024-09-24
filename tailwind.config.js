@@ -7,6 +7,7 @@ export default {
   theme: {
     width: {
       '90p': '90%',
+      'svgWH': '25px',
       'image': '90px',
       'imageDetails': '200px',
       'mainH': '30px'

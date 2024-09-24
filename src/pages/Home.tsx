@@ -38,7 +38,7 @@ export default function Home() {
   useEffect(() => {
     const fetchPokemons = async () => {
       try {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=20`)
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=100`)
         const data = await response.json()
 
         const fetchPokemonImage = data.results.map(async (pokemon: Pokemon) => {
